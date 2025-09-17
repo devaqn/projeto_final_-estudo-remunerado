@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel do Administrador</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background: #f4f6f9;
+      display: flex;
+      min-height: 100vh;
+    }
+
+  
+    .sidebar {
+      width: 250px;
+      background: linear-gradient(180deg, #6a11cb, #2575fc);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+      position: fixed;
+      height: 100%;
+      box-shadow: 2px 0 12px rgba(0,0,0,0.15);
+    }
+
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .sidebar a {
+      color: #fff;
+      text-decoration: none;
+      padding: 12px;
+      margin: 6px 0;
+      border-radius: 8px;
+      transition: background 0.3s;
+      display: block;
+    }
+
+    .sidebar a:hover, .sidebar a.active {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+ 
+    .main {
+      margin-left: 250px;
+      padding: 2rem;
+      flex: 1;
+    }
+
+    header {
+      background: #fff;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      color: #333;
+    }
+
+    .logout {
+      background: #ff4757;
+      color: #fff;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .logout:hover {
+      background: #e84118;
+    }
+
+  
+    .content-section { display: none; }
+    .content-section.active { display: block; }
+
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .card:hover { transform: translateY(-5px); }
+    .card h2 { margin-bottom: 0.5rem; color: #333; }
+    .card p { font-size: 24px; font-weight: bold; }
+
+    .purple { border-top: 5px solid #6a11cb; }
+    .blue { border-top: 5px solid #2575fc; }
+    .green { border-top: 5px solid #2ed573; }
+    .orange { border-top: 5px solid #ffa502; }
+
+   
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    table th, table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+
+    table th {
+      background: #f1f3f5;
+    }
+
+    .btn {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .btn-edit { background: #2575fc; color: #fff; }
+    .btn-delete { background: #ff4757; color: #fff; }
+  </style>
+</head>
+<body>
+  
+  <div class="sidebar">
+    <h2>⚙️ Admin</h2>
+    <a href="#" class="active" onclick="showSection('dashboard')">📊 Dashboard</a>
+    <a href="#" onclick="showSection('usuarios')">👤 Gerenciar Usuários</a>
+    <a href="#" onclick="showSection('provas')">📝 Ver Provas</a>
+    <a href="#" onclick="showSection('estatisticas')">📈 Estatísticas</a>
+    <a href="login.html">🚪 Sair</a>
+    <button id="toggle">Modo escuro</button>
+  </div>
+
+  <div class="main">
+    <header>
+      <h1>Painel do Administrador</h1>
+      <button class="logout" onclick="window.location.href='login.html'">Sair</button>
+    </header>
+
+    
+    <section id="dashboard" class="content-section active">
+      <div class="cards">
+        <div class="card purple">
+          <h2>Total de Usuários</h2>
+          <p>120</p>
+        </div>
+        <div class="card blue">
+          <h2>Provas Cadastradas</h2>
+          <p>35</p>
+        </div>
+        <div class="card green">
+          <h2>Cartões Criados</h2>
+          <p>450</p>
+        </div>
+        <div class="card orange">
+          <h2>Ativos Hoje</h2>
+          <p>58</p>
+        </div>
+      </div>
+    </section>
+
+  
+    <section id="usuarios" class="content-section">
+      <h2>Gerenciar Usuários</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>01</td>
+            <td>Ana Souza</td>
+            <td>ana@email.com</td>
+            <td>
+              <button class="btn btn-edit">Editar</button>
+              <button class="btn btn-delete">Excluir</button>
+            </td>
+          </tr>
+          <tr>
+            <td>02</td>
+            <td>Lucas Lima</td>
+            <td>lucas@email.com</td>
+            <td>
+              <button class="btn btn-edit">Editar</button>
+              <button class="btn btn-delete">Excluir</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+
+    <section id="provas" class="content-section">
+      <h2>Provas Cadastradas</h2>
+      <ul>
+        <li>Prova de Matemática - 15/09/2025</li>
+        <li>Prova de Português - 20/09/2025</li>
+        <li>Prova de História - 25/09/2025</li>
+      </ul>
+    </section>
+
+    
+    <section id="estatisticas" class="content-section">
+      <h2>Estatísticas</h2>
+      <canvas id="graficoUsuarios" width="400" height="200"></canvas>
+    </section>
+  </div>
+
+  <script src="./js/logica.js"></script>
+  <script>
+    function showSection(id) {
+      document.querySelectorAll(".content-section").forEach(sec => sec.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+      
+      document.querySelectorAll(".sidebar a").forEach(link => link.classList.remove("active"));
+      event.target.classList.add("active");
+    }
+
+ 
+    const ctx = document.getElementById('graficoUsuarios');
+    if (ctx) {
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
+          datasets: [{
+            label: 'Novos Usuários',
+            data: [12, 19, 8, 15, 22, 30],
+            backgroundColor: '#2575fc'
+          }]
+        },
+        options: { responsive: true }
+      });
+    }
+  </script>
+</body>
+</html>

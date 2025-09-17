@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel do Usuário</title>
+  <link rel="stylesheet" href="style1.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+ <header class="navbar">
+    <div class="logo">📚 Cartões de Estudo</div>
+    <button class="menu-toggle" id="menu-toggle">☰</button>
+    <nav id="nav">
+      <ul>
+          <button onclick="mostrarTela('dashboard')">Painel</button>
+          <button onclick="mostrarTela('provas')">Provas</button>
+          <button onclick="mostrarTela('gerenciar')">Anotações</button>
+          <li><a href="./index.html" class="sair">Sair</a></li>
+        <button class="sair" id="toggle">Modo escuro</button>
+      </ul>
+    </nav>
+  </header>
+
+  <div id="gerenciar" class="tela" style="display: none;">
+  <h2>📝 Bloco de Anotações</h2>
+  <form class="form" id="formAnotacao">
+    <textarea id="textoAnotacao" placeholder="Escreva sua anotação..." required></textarea>
+    <button type="submit">Adicionar Anotação</button>
+  </form>
+  <ul id="listaAnotacoes"></ul>
+</div>
+
+
+ <div id="provas" class="tela" style="display: none;">
+  <h2>📅 Provas e Avaliações</h2>
+  <input type="text" placeholder="Buscar provas...">
+  <p>Nenhuma prova cadastrada ainda. Crie sua primeira prova!</p>
+</div>
+
+
+  <section class="welcome" id="dashboard">
+    <h1>👋Sejam muito bem vindos!<h1>
+    <p>Continue seu progresso de estudos. Você tem <b>0 cartões</b> para revisar hoje.</p>
+    <p class="next-test">📅 Próxima prova: Avaliação de História - Brasil Colônia em 3 dias</p>
+  
+
+
+
+  <section class="cards">
+    <div class="card purple">
+      <h2>Total de Cartões</h2>
+      <p class="num">0</p>
+    </div>
+    <div class="card orange">
+      <h2>Para Revisar</h2>
+      <p class="num">0</p>
+    </div>
+    <div class="card green">
+      <h2>Estudos Hoje</h2>
+      <p class="num">0</p>
+    </div>
+    <div class="card pink">
+      <h2>Taxa de Acerto</h2>
+      <p class="num">0%</p>
+    </div>
+  </section>
+
+
+  <section class="meta-provas">
+    <div class="meta">
+      <h2>Meta Semanal</h2>
+      <p>Progresso desta semana: <b>0%</b></p>
+      <div class="progress"><div class="bar" style="width:0%"></div></div>
+      <p>Meta: 50 cartões por semana</p>
+    </div>
+    <div class="provas">
+      <h2>Próximas Provas</h2>
+      <ul>
+        <li>História - Brasil Colônia <span>3 dias</span></li>
+        <li>Matemática - Funções <span>7 dias</span></li>
+      </ul>
+    </div>
+  </section>
+
+
+ <section class="materias">
+  <h2>Suas Matérias</h2>
+  <div class="grid">
+    <div class="materia" data-materia="matematica">📐 Matemática <span>0 cartões</span></div>
+    <div class="materia" data-materia="portugues">📖 Português <span>0 cartões</span></div>
+    <div class="materia" data-materia="historia">🏛️ História <span>0 cartões</span></div>
+    <div class="materia" data-materia="geografia">🌍 Geografia <span>0 cartões</span></div>
+    <div class="materia" data-materia="ciencias">🔬 Ciências <span>0 cartões</span></div>
+    <div class="materia" data-materia="biologia">🧬 Biologia <span>0 cartões</span></div>
+    <div class="materia" data-materia="fisica">⚛️ Física <span>0 cartões</span></div>
+    <div class="materia" data-materia="quimica">🧪 Química <span>0 cartões</span></div>
+    <div class="materia" data-materia="ingles">🇺🇸 Inglês <span>0 cartões</span></div>
+    <div class="materia" data-materia="educacao">⚽ Educação Física <span>0 cartões</span></div>
+    <div class="materia" data-materia="artes">🎨 Artes <span>0 cartões</span></div>
+    <div class="materia" data-materia="filosofia">🤔 Filosofia <span>0 cartões</span></div>
+    <div class="materia" data-materia="sociologia">👥 Sociologia <span>0 cartões</span></div>
+  </div>
+
+  <div id="conteudoMateria"></div>
+</section>
+
+  </section>
+  <script src="./js/logica.js"></script>
+  <script>
+  
+  </script>
+  
+</body>
+</html>
